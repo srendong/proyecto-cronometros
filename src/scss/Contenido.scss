@@ -1,0 +1,32 @@
+.contenido{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+    justify-content: space-around;
+    background-color:#FFE8B7;
+    height: 100vh;
+    .titulo{
+        display: flex;
+        width: 100%;
+        height: 10vh;
+        flex-flow: row wrap;
+        justify-content: center;
+        padding: 5vh;
+        h1{
+            color: rgb(87, 86, 82);
+        }
+    }
+    .cronometros{
+        display: flex;
+        flex-flow: row wrap;
+        width: 60%;
+        
+    }
+    .editor{
+        display:flex;
+        flex-flow: column wrap;
+        width: 30%;
+        padding: 3rem;
+        align-content: center;
+    }
+}

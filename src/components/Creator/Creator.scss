@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem;
+  background-color: rgb(99, 106, 107);
+  width: 20rem;
+  height: 20rem;
+  padding: 2rem;
+  .botones {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    justify-content: space-between;
+  }
+  .entrada {
+    width: 100%;
+    border-radius: 10px  ;
+    -webkit-border-radius: 10px  ;
+    -moz-border-radius: 10px  ;
+    -ms-border-radius: 10px  ;
+    -o-border-radius: 10px  ;
+    border: none;
+}
+  .boton {
+    background-color: rgb(236, 213, 150);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    width: 45%;
+    border: none;
+}
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  label{
+      font-size: 1rem;
+      color: white;
+  }
+  .name{
+      width: 80%;
+  }
+}

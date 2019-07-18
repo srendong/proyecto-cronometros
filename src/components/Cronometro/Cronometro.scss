@@ -1,0 +1,64 @@
+.cronometro {
+  display: flex;
+  background-color: #5c5a61;
+  height: 20rem;
+  width: 20rem;
+  padding: 0.5rem;
+  margin: 2rem;
+  border-radius: 10px;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  .textos {
+    display: flex;
+    width: 100%;
+    
+    flex-flow: column wrap;
+    align-items: start;
+    h5 {
+      color: rgb(189, 194, 160);
+      font-size: 1.5rem;
+      margin-left: 10%;
+    }
+    p {
+      color: rgb(255, 255, 255);
+      font-size: 1rem;
+      margin-left: 10%;
+    }
+
+  }
+  .time {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    p {
+      color: white;
+      font-size: 3rem;
+    }
+  }
+  .botones {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+
+    justify-content: space-around;
+    .start {
+      width: 90%;
+      margin: 5px;
+    }
+    .edit {
+      width: 40%;
+      margin: 5px;
+    }
+    .delete {
+      width: 40%;
+      margin: 5px;
+    }
+  }
+}
