@@ -6,13 +6,13 @@ const Cronometro = ({
   startStop,
   name,
   time,
-  proyect
+  project
 }) => {
   return (
     <div className="cronometro">
         <div className="textos">
           <h5>{name}</h5>
-          <p>{proyect}</p>
+          <p>{project}</p>
         </div>
       <div className="time">
         <p>{time}</p>

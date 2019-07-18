@@ -6,7 +6,7 @@ import Creator from "./components/Creator/Creator";
 class App extends Component {
   state = {
     cronometers: [{ name: "Example", project: "Project", time: "0:00:00" }],
-    creatorVisibility: false,
+    creatorVisibility: true,
     name: "",
     project: "",
     time: "00:00:00"
@@ -31,14 +31,16 @@ class App extends Component {
   handlerAdd = e => {
     e.preventDefault();
     const cronometers = [ ...this.state.cronometers ];
-    cronometers.push( {name:this.state.name , project:this.state.project, time:this.state.time });
+    cronometers.unshift( {name:this.state.name , project:this.state.project, time:this.state.time });
     this.setState({ cronometers });
+    this.setState({name:"", project:"",creatorVisibility: true})
   };
 
   handlerShowCreator = (e) => {
     e.preventDefault()
     const oldState = this.state.creatorVisibility
     this.setState({ creatorVisibility: ! oldState });
+    this.setState({name:"", project:""})
   };
 
   render() {
@@ -59,7 +61,7 @@ class App extends Component {
           ))}
         </div>
         <div className="editor">
-          <button onClick={this.handlerShowCreator}>Cronometer create</button>
+          <button className="cronometerCreator" onClick={this.handlerShowCreator}>Create</button>
           {this.state.creatorVisibility  ? null : <Creator 
             name={this.state.name}
             project={this.state.project}
