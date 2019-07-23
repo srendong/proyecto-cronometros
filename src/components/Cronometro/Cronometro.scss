@@ -16,7 +16,7 @@
   .textos {
     display: flex;
     width: 100%;
-    
+
     flex-flow: column wrap;
     align-items: start;
     h5 {
@@ -29,7 +29,6 @@
       font-size: 1rem;
       margin-left: 10%;
     }
-
   }
   .time {
     display: flex;
@@ -49,16 +48,15 @@
 
     justify-content: space-around;
     .start {
-      width: 90%;
+      width: 100%;
       margin: 5px;
     }
-    .edit {
+    .edit .delete .save .cancel {
       width: 40%;
       margin: 5px;
     }
-    .delete {
-      width: 40%;
-      margin: 5px;
-    }
+  }
+  .invisible {
+    display: none;
   }
 }

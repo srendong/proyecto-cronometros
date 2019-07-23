@@ -2,33 +2,23 @@
   display: flex;
   flex-flow: row wrap;
   align-items: start;
-  justify-content: space-around;
-  background-color: #888f8d;
-  height: 100vh;
-  .titulo {
-    display: flex;
-    width: 100%;
-    height: 10vh;
-    flex-flow: row wrap;
-    justify-content: center;
-    padding: 5vh;
-    h1 {
-      color: rgb(87, 86, 82);
-    }
-  }
+  justify-content: flex-end;
+  //   background-color: #888f8d;
+
   .cronometros {
     display: flex;
     flex-flow: row wrap;
-    width: 60%;
+    width: 70%;
+    padding: 1rem;
   }
   .editor {
     display: flex;
     flex-flow: column wrap;
     width: 30%;
-    padding: 3rem;
-    align-items: center;
-    justify-content: center;
-    .cronometerCreator {
+    height: 100vh;
+    align-content: start;
+    justify-content: start;
+    .chronometerCreator {
       background-color: rgb(12, 224, 214);
       width: 10rem;
       height: 10rem;
@@ -40,6 +30,25 @@
       -o-border-radius: 5rem;
       font-size: 2rem;
       color: white;
+    }
+    .creador {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 80vh;
+    }
+    .titulo {
+      display: flex;
+      width: 100%;
+      height: 15vh;
+      flex-flow: row wrap;
+      justify-content: center;
+      padding: 5vh;
+      h1 {
+        color: rgb(129, 127, 120);
+        font-size: 4rem;
+      }
     }
   }
 }

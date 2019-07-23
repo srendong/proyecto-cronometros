@@ -5,71 +5,110 @@ import Creator from "./components/Creator/Creator";
 
 class App extends Component {
   state = {
-    cronometers: [{ name: "Example", project: "Project", time: "0:00:00" }],
+    chronometers: [
+      {
+        id: Date.valueOf(),
+        name: "Example",
+        project: "Project",
+      }
+    ],
     creatorVisibility: true,
     name: "",
     project: "",
-    time: "00:00:00"
   };
 
-  handlerStartSop = () => {};
-
-  handlerDelete = index => {
-    const cronometers = [...this.state.cronometers];
-    cronometers.splice(index, 1);
-    this.setState({ cronometers });
+  handlerShowCreator = e => {
+    e.preventDefault();
+    const oldState = this.state.creatorVisibility;
+    this.setState({ creatorVisibility: !oldState });
+    this.setState({ name: "", project: "" });
   };
-  handlerCreate = (e)=>{
+
+  handlerCreate = e => {
     this.setState({
       [e.target.name]: e.target.value
-    })
-  }
-  handlerEdit = () => {};
-
-  handlerRestart = () => {};
+    });
+  };
 
   handlerAdd = e => {
     e.preventDefault();
-    const cronometers = [ ...this.state.cronometers ];
-    cronometers.unshift( {name:this.state.name , project:this.state.project, time:this.state.time });
-    this.setState({ cronometers });
-    this.setState({name:"", project:"",creatorVisibility: true})
+    const chronometers = [...this.state.chronometers];
+    this.state.name.length === 0 || this.state.project.length === 0 ? alert("fill the inputs"):
+    chronometers.unshift({id: Date.valueOf(), name: this.state.name, project: this.state.project });
+
+    this.setState({ chronometers });
+    this.setState({ name: "", project: "", creatorVisibility: true });
   };
 
-  handlerShowCreator = (e) => {
+  handlerDelete = index => {
+    const chronometers = [...this.state.chronometers];
+    chronometers.splice(index, 1);
+    this.setState({ chronometers });
+  };
+
+
+  handlerChangeName = (e,id) =>{
+    const chronometerIndex = this.state.chronometers.findIndex(chronometer=> id === chronometer.id)
+    const chronometer = {...this.state.chronometers[chronometerIndex]}
+    chronometer.name = e.target.value
+    const chronometers = [...this.state.chronometers] 
+    chronometers[chronometerIndex] = chronometer;
+    this.setState({ chronometers});
+  }
+
+  handlerChangeProject = (e,id) =>{
+    const chronometerIndex = this.state.chronometers.findIndex(chronometer=> id === chronometer.id)
+    const chronometer = {...this.state.chronometers[chronometerIndex]}
+    chronometer.project = e.target.value
+    const chronometers = [...this.state.chronometers] 
+    chronometers[chronometerIndex] = chronometer;
+    this.setState({ chronometers});
+  }
+
+  handlerCancel = e => {
     e.preventDefault()
-    const oldState = this.state.creatorVisibility
-    this.setState({ creatorVisibility: ! oldState });
-    this.setState({name:"", project:""})
+    this.setState({});
   };
 
   render() {
     return (
       <div className="contenido">
-        <div className="titulo">
-          <h1>Cronometros</h1>
+        <div className="editor fixed-top ">
+          <div className="titulo ">
+            <h1>Cronometros</h1>
+          </div>
+          <div className="creador ">
+            <button
+              className="chronometerCreator"
+              onClick={this.handlerShowCreator}
+            >
+              {this.state.creatorVisibility ? "create": "cancel"}
+            </button>
+          </div>
         </div>
         <div className="cronometros ">
-          {this.state.cronometers.map((cronometer, index) => (
+          {this.state.creatorVisibility ? null : (
+            <Creator
+              name={this.state.name}
+              project={this.state.project}
+              change={this.handlerCreate}
+              submitCreator={this.handlerAdd}
+              cancelCreator={this.handlerShowCreator}
+            />
+          )}
+          {this.state.chronometers.map((chronometer, index) => (
             <Cronometro
-              key={index}
-              name={cronometer.name}
-              project={cronometer.project}
-              time={cronometer.time}
+              key={chronometer.id}
+              name={chronometer.name}
+              project={chronometer.project}
               clickDelete={() => this.handlerDelete(index)}
+              handlerChangeName={(e) => this.handlerChangeName(e,chronometer.id)}
+              handlerChangeProject={(e) => this.handlerChangeProject(e,chronometer.id)}
+              clickCancel = {this.handlerCancel}
             />
           ))}
         </div>
-        <div className="editor">
-          <button className="cronometerCreator" onClick={this.handlerShowCreator}>Create</button>
-          {this.state.creatorVisibility  ? null : <Creator 
-            name={this.state.name}
-            project={this.state.project}
-            change={this.handlerCreate}
-            submitCreator={this.handlerAdd}
-            cancelCreator={this.handlerShowCreator}
-          /> }
-        </div>
+        {/* <p>{JSON.stringify(this.state.chronometers)}</p> */}
       </div>
     );
   }
