@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
 class Cronometro extends Component {
-  state = {
-    editComponent: false,
+state = {
+      editComponent: false,
     running: false,
     time: 0
-  };
+    }
 
   seconds = () => {
     return ("0" + (this.state.time % 60)).slice(-2);
@@ -46,10 +46,10 @@ class Cronometro extends Component {
     const normalView = this.state.editComponent ? "invisible" : "";
     return (
       <div className="cronometro">
-        <form className="textos" onSubmit={this.handlerSave}>
+        <form className="textos " onSubmit={this.handlerSave}>
           <h5>{this.props.name}</h5>
           <input
-            className={editView}
+            className={`input1 ${editView}`}
             type="text"
             name="name"
             value={this.props.name}
@@ -57,36 +57,31 @@ class Cronometro extends Component {
           />
           <p>{this.props.project}</p>
           <input
-            className={editView}
+            className={`input1 ${editView}`}
             type="text"
             name="project"
             value={this.props.project}
             onChange={this.props.handlerChangeProject}
           />
         </form>
-        <div className="time">
-          <p>
-            {this.hours()}:{this.minutes()}:{this.seconds()}
-          </p>
+        <div className="time ">
+          <p>{this.hours()}:{this.minutes()}:{this.seconds()}</p>
         </div>
-        <div className="botones">
-          <button className="" onClick={this.handlerStart}>
+        <div className="botones ">
+          <button className={this.state.running ? "startStop red":"startStop green"} onClick={this.handlerStart}>
             {this.state.running ? "stop" : "start"}
           </button>
-          <button className="" onClick={this.handlerReset}>
+          <button className="boton" onClick={this.handlerReset}>
             Reset
           </button>
-          <button className={normalView} onClick={this.handlerEdit}>
+          <button className={`boton ${normalView}`} onClick={this.handlerEdit}>
             Edit
           </button>
-          <button className={normalView} onClick={this.props.clickDelete}>
+          <button className={`boton ${normalView}`} onClick={this.props.clickDelete}>
             Delete
           </button>
-          <button className={editView} onClick={this.handlerSave}>
+          <button className={`botons ${editView}`} onClick={this.handlerSave}>
             save
-          </button>
-          <button className={editView} onClick={this.props.clickCancel}>
-            cancel
           </button>
         </div>
       </div>

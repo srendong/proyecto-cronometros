@@ -15,7 +15,7 @@ class Creator extends Component {
               type="text"
               id="name"
               name="name"
-              placeholder="   Name"
+              placeholder="Name"
               value={this.props.name}
               onChange={this.props.change}
               ref={(input) => { this.nameInput = input; }}
@@ -28,7 +28,7 @@ class Creator extends Component {
               type="text"
               id="project"
               name="project"
-              placeholder="   Project"
+              placeholder="Project"
               velue={this.props.project}
               onChange={this.props.change}
             />

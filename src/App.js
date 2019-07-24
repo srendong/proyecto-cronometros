@@ -45,12 +45,12 @@ class App extends Component {
     this.setState({ name: "", project: "", creatorVisibility: true });
   };
 
-  handlerDelete = index => {
-    // const chronometerIndex = this.state.chronometers.findIndex(
-    //   chronometer => id === chronometer.id
-    // );
+  handlerDelete = id => {
+    const chronometerIndex = this.state.chronometers.findIndex(
+      chronometer => id === chronometer.id
+    );
     const chronometers = [...this.state.chronometers];
-    chronometers.splice(index, 1);
+    chronometers.splice(chronometerIndex, 1);
     this.setState({ chronometers });
   };
 
@@ -79,9 +79,9 @@ class App extends Component {
   render() {
     return (
       <div className="contenido">
-        <div className="editor fixed-top ">
+        <div className="editor fixed-top border ">
           <div className="titulo ">
-            <h1>Cronometros</h1>
+            <h1>Timers</h1>
           </div>
           <div className="creador ">
             <button
@@ -107,7 +107,7 @@ class App extends Component {
               key={chronometer.id}
               name={chronometer.name}
               project={chronometer.project}
-              clickDelete={() => this.handlerDelete(index)}
+              clickDelete={() => this.handlerDelete(chronometer.id)}
               handlerChangeName={e => this.handlerChangeName(e, chronometer.id)}
               handlerChangeProject={e =>
                 this.handlerChangeProject(e, chronometer.id)

@@ -4,10 +4,11 @@
   align-items: center;
   justify-content: space-between;
   margin: 2rem;
-  background-color: rgb(99, 106, 107);
+  background-color: rgb(66, 66, 66);
   width: 20rem;
   height: 20rem;
   padding: 2rem;
+  outline: none;
   .botones {
     display: flex;
     flex-flow: row wrap;
@@ -16,33 +17,37 @@
   }
   .entrada {
     width: 100%;
-    border-radius: 10px  ;
-    -webkit-border-radius: 10px  ;
-    -moz-border-radius: 10px  ;
-    -ms-border-radius: 10px  ;
-    -o-border-radius: 10px  ;
-    border: none;
-}
-  .boton {
-    background-color: rgb(236, 213, 150);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    width: 45%;
     border: none;
+    outline: none !important;
+    padding-left: 10px;
+  }
+  .boton {
+    background: none;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    width: 45%;
+    border: 2px solid white;
+    outline: none !important;
+    color: white;
 }
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
-  label{
-      font-size: 1rem;
-      color: white;
+  label {
+    font-size: 1rem;
+    color: white;
   }
-  .name{
-      width: 80%;
+  .name {
+    width: 80%;
   }
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
 }
