@@ -33,9 +33,8 @@ class App extends Component {
   handlerAdd = e => {
     e.preventDefault();
     const chronometers = [...this.state.chronometers];
-    this.state.name.length === 0 || this.state.project.length === 0 ? alert("fill the inputs"):
-    chronometers.unshift({id: Date.valueOf(), name: this.state.name, project: this.state.project });
-
+    this.state.name.length === 0 || this.state.project.length === 0 ? alert("fill the inputs") :
+    chronometers.unshift({id: Date.valueOf(), name: this.state.name, project: this.state.project, time:0 });
     this.setState({ chronometers });
     this.setState({ name: "", project: "", creatorVisibility: true });
   };

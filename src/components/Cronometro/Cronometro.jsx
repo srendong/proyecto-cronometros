@@ -3,31 +3,34 @@ import React, { Component } from "react";
 class Cronometro extends Component {
   state = {
     editComponent: false,
-    time: 0,
-    running: true
+    running: false,
+    time: 0
+  };
+
+  seconds = () => {
+    return ("0" + (this.state.time % 60)).slice(-2);
+  };
+
+  minutes = () => {
+    return ("0" + Math.floor(this.state.time / 60)%60).slice(-2);
+  };
+
+  hours = () => {
+    return ("0" + Math.floor(this.state.time / 3600)).slice(-2);
   };
 
   handlerStart = () => {
     const oldRunning = this.state.running;
-    setInterval(() => {
-      this.setState({
-        time: this.state.time + 1,
-        running: !oldRunning
-      });
-    }, 1000);
+    this.setState({
+      running: !oldRunning
+    });
+    const s = setInterval(() => {
+      this.state.running  ? this.setState({time: this.state.time + 1}):clearInterval(s)
+    }, 1000);    
   };
-  handlerStop = () => {
-    clearInterval(setInterval(() => {
-      this.setState({
-        time: this.state.time + 1,
-      });
-    }, 1000))
-      this.setState({
-        time: this.state.time,
-        running: false
-      });
-    
-  };
+  handlerReset = () =>{
+    this.setState({time: 0})
+  }
 
   handlerEdit = () => {
     this.setState({ editComponent: true });
@@ -41,8 +44,6 @@ class Cronometro extends Component {
   render() {
     const editView = this.state.editComponent ? "" : "invisible";
     const normalView = this.state.editComponent ? "invisible" : "";
-    const runningOn = this.state.running ? "" : "invisible";
-    const runningOff = this.state.running ? "invisible" : "";
     return (
       <div className="cronometro">
         <form className="textos" onSubmit={this.handlerSave}>
@@ -64,14 +65,16 @@ class Cronometro extends Component {
           />
         </form>
         <div className="time">
-          <p>{this.state.time}</p>
+          <p>
+            {this.hours()}:{this.minutes()}:{this.seconds()}
+          </p>
         </div>
         <div className="botones">
-          <button className={runningOn} onClick={this.handlerStart}>
-            Start
+          <button className="" onClick={this.handlerStart}>
+            {this.state.running ? "stop" : "start"}
           </button>
-          <button className={runningOff} onClick={this.handlerStop}>
-            stop
+          <button className="" onClick={this.handlerReset}>
+            Reset
           </button>
           <button className={normalView} onClick={this.handlerEdit}>
             Edit
