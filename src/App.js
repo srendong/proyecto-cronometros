@@ -7,14 +7,14 @@ class App extends Component {
   state = {
     chronometers: [
       {
-        id: Date.valueOf(),
+        id: new Date().valueOf(),
         name: "Example",
-        project: "Project",
+        project: "Project"
       }
     ],
     creatorVisibility: true,
     name: "",
-    project: "",
+    project: ""
   };
 
   handlerShowCreator = e => {
@@ -33,40 +33,47 @@ class App extends Component {
   handlerAdd = e => {
     e.preventDefault();
     const chronometers = [...this.state.chronometers];
-    this.state.name.length === 0 || this.state.project.length === 0 ? alert("fill the inputs") :
-    chronometers.unshift({id: Date.valueOf(), name: this.state.name, project: this.state.project, time:0 });
+    this.state.name.length === 0 || this.state.project.length === 0
+      ? alert("fill the inputs")
+      : chronometers.unshift({
+          id: new Date().valueOf(),
+          name: this.state.name,
+          project: this.state.project,
+          time: 0
+        });
     this.setState({ chronometers });
     this.setState({ name: "", project: "", creatorVisibility: true });
   };
 
   handlerDelete = index => {
+    // const chronometerIndex = this.state.chronometers.findIndex(
+    //   chronometer => id === chronometer.id
+    // );
     const chronometers = [...this.state.chronometers];
     chronometers.splice(index, 1);
     this.setState({ chronometers });
   };
 
-
-  handlerChangeName = (e,id) =>{
-    const chronometerIndex = this.state.chronometers.findIndex(chronometer=> id === chronometer.id)
-    const chronometer = {...this.state.chronometers[chronometerIndex]}
-    chronometer.name = e.target.value
-    const chronometers = [...this.state.chronometers] 
+  handlerChangeName = (e, id) => {
+    const chronometerIndex = this.state.chronometers.findIndex(
+      chronometer => id === chronometer.id
+    );
+    const chronometer = { ...this.state.chronometers[chronometerIndex] };
+    chronometer.name = e.target.value;
+    const chronometers = [...this.state.chronometers];
     chronometers[chronometerIndex] = chronometer;
-    this.setState({ chronometers});
-  }
+    this.setState({ chronometers });
+  };
 
-  handlerChangeProject = (e,id) =>{
-    const chronometerIndex = this.state.chronometers.findIndex(chronometer=> id === chronometer.id)
-    const chronometer = {...this.state.chronometers[chronometerIndex]}
-    chronometer.project = e.target.value
-    const chronometers = [...this.state.chronometers] 
+  handlerChangeProject = (e, id) => {
+    const chronometerIndex = this.state.chronometers.findIndex(
+      chronometer => id === chronometer.id
+    );
+    const chronometer = { ...this.state.chronometers[chronometerIndex] };
+    chronometer.project = e.target.value;
+    const chronometers = [...this.state.chronometers];
     chronometers[chronometerIndex] = chronometer;
-    this.setState({ chronometers});
-  }
-
-  handlerCancel = e => {
-    e.preventDefault()
-    this.setState({});
+    this.setState({ chronometers });
   };
 
   render() {
@@ -81,7 +88,7 @@ class App extends Component {
               className="chronometerCreator"
               onClick={this.handlerShowCreator}
             >
-              {this.state.creatorVisibility ? "create": "cancel"}
+              {this.state.creatorVisibility ? "create" : "cancel"}
             </button>
           </div>
         </div>
@@ -101,13 +108,14 @@ class App extends Component {
               name={chronometer.name}
               project={chronometer.project}
               clickDelete={() => this.handlerDelete(index)}
-              handlerChangeName={(e) => this.handlerChangeName(e,chronometer.id)}
-              handlerChangeProject={(e) => this.handlerChangeProject(e,chronometer.id)}
-              clickCancel = {this.handlerCancel}
+              handlerChangeName={e => this.handlerChangeName(e, chronometer.id)}
+              handlerChangeProject={e =>
+                this.handlerChangeProject(e, chronometer.id)
+              }
+              clickCancel={this.handlerCancel}
             />
           ))}
         </div>
-        {/* <p>{JSON.stringify(this.state.chronometers)}</p> */}
       </div>
     );
   }
